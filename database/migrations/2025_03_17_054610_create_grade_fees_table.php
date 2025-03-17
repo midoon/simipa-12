@@ -13,6 +13,16 @@ return new class extends Migration
     {
         Schema::create('grade_fees', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('payment_type_id')->constrained(
+                table: 'payment_types',
+                indexName: 'grade_fee_payment_type_id'
+            );
+            $table->foreignId('grade_id')->constrained(
+                table: 'grades',
+                indexName: 'grade_fee_grade_id'
+            );
+            $table->float('amount');
+            $table->date('due_date');
             $table->timestamps();
         });
     }

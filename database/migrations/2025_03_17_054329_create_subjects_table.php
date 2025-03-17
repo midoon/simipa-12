@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('grade_id')->constrained(
+                table: 'grades',
+                indexName: 'subjects_grade_id'
+            );
+            $table->string('name');
+            $table->longText('description');
             $table->timestamps();
         });
     }

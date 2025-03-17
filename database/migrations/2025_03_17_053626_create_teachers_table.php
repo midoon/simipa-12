@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('teachers', function (Blueprint $table) {
             $table->id();
+            $table->json('role');
+            $table->string('name');
+            $table->string('nik')->unique();
+            $table->enum('gender', ['laki-laki', 'perempuan'])->default('laki-laki');
+            $table->string('password')->nullable();
+            $table->boolean('account')->default(false);
             $table->timestamps();
         });
     }

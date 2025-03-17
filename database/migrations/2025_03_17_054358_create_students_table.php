@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('group_id')->constrained(
+                table: 'groups',
+                indexName: 'student_group_id'
+            );
+            $table->string('name');
+            $table->string('nisn')->unique();
+            $table->enum('gender', ['laki-laki', 'perempuan'])->default('laki-laki');
             $table->timestamps();
         });
     }

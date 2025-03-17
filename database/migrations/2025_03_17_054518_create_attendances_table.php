@@ -13,6 +13,20 @@ return new class extends Migration
     {
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('student_id')->constrained(
+                table: 'students',
+                indexName: 'presence_student_id'
+            );
+            $table->foreignId('activity_id')->constrained(
+                table: 'activities',
+                indexName: 'presence_presence_activity_id'
+            );
+            $table->foreignId('group_id')->constrained(
+                table: 'groups',
+                indexName: 'presence_group_id'
+            );
+            $table->date('day');
+            $table->enum('status', ['hadir', 'sakit', 'izin', 'alpha']);
             $table->timestamps();
         });
     }

@@ -13,6 +13,21 @@ return new class extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('group_id')->constrained(
+                table: 'groups',
+                indexName: 'schedule_group_id'
+            );
+            $table->foreignId('subject_id')->constrained(
+                table: 'subjects',
+                indexName: 'schedule_subject_id'
+            );
+            $table->foreignId('teacher_id')->constrained(
+                table: 'teachers',
+                indexName: 'schedule_teacher_id'
+            );
+            $table->enum('day_of_week', ['senin', 'selasa', 'rabu', 'kamis', 'jumat', 'sabtu', 'minggu']);
+            $table->time('start_time');
+            $table->time('end_time');
             $table->timestamps();
         });
     }
