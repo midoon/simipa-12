@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\AdminActivityController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminGradeController;
 use App\Http\Controllers\AdminGroupController;
+use App\Http\Controllers\AdminScheduleController;
 use App\Http\Controllers\AdminStudentController;
 use App\Http\Controllers\AdminSubjectController;
 use App\Http\Controllers\AdminTeacherController;
@@ -77,4 +79,16 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     Route::put('/admin/subject/{subjectId}', [AdminSubjectController::class, 'update']);
     Route::get('/admin/subject/template/donwload', [AdminSubjectController::class, 'downloadTemplate']);
     Route::post('/admin/subject/upload', [AdminSubjectController::class, 'upload']);
+
+    // admin schedule
+    Route::get('/admin/schedule', [AdminScheduleController::class, 'index']);
+    Route::post('/admin/schedule', [AdminScheduleController::class, 'store']);
+    Route::delete('/admin/schedule/{scheduleId}', [AdminScheduleController::class, 'destroy']);
+    Route::put('/admin/schedule/{scheduleId}', [AdminScheduleController::class, 'update']);
+
+    // admin activity
+    Route::get('/admin/activity', [AdminActivityController::class, 'index']);
+    Route::post('/admin/activity', [AdminActivityController::class, 'store']);
+    Route::put('/admin/activity/{activityId}', [AdminActivityController::class, 'update']);
+    Route::delete('/admin/activity/{activityId}', [AdminActivityController::class, 'destroy']);
 });
