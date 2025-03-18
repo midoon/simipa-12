@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <h1 class="font-bold mt-3">Hello</h1>
+    <h1 class="font-bold mt-3">Helo {{ \Carbon\Carbon::now()->isoFormat('dddd') }}</h1>
 </body>
 
 </html>
