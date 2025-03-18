@@ -118,44 +118,48 @@ class AdminGradeController extends Controller
 
     public function upload(Request $request)
     {
-        $request->validate([
-            'file' => 'required|mimes:csv,txt'
-        ]);
-
-        $file = fopen($request->file('file')->getRealPath(), 'r');
-        $header = fgetcsv($file);
-
-        $data = [];
-        while ($row = fgetcsv($file)) {
-            $data[] = [
-                'name' => $row[0],
-            ];
-        }
-        fclose($file);
-
-
-        // filter for duplicate nik and gender validation
-
-        foreach ($data as $grade) {
-            $validator = Validator::make($grade, [
-                'name' => 'required',
+        try {
+            $request->validate([
+                'file' => 'required|mimes:csv,txt'
             ]);
 
-            if ($validator->fails()) {
-                return back()->withErrors($validator);
+            $file = fopen($request->file('file')->getRealPath(), 'r');
+            $header = fgetcsv($file);
+
+            $data = [];
+            while ($row = fgetcsv($file)) {
+                $data[] = [
+                    'name' => $row[0],
+                ];
+            }
+            fclose($file);
+
+
+            // filter for duplicate nik and gender validation
+
+            foreach ($data as $grade) {
+                $validator = Validator::make($grade, [
+                    'name' => 'required',
+                ]);
+
+                if ($validator->fails()) {
+                    return back()->withErrors($validator);
+                }
+
+                if (Grade::where('name', $grade['name'])->exists()) {
+                    return back()->withErrors(['grade' => "name: $grade[name] sudah terdaftar."]);
+                }
             }
 
-            if (Grade::where('name', $grade['name'])->exists()) {
-                return back()->withErrors(['grade' => "name: $grade[name] sudah terdaftar."]);
-            }
+            DB::transaction(function () use ($data) {
+                foreach ($data as $teacher) {
+                    Grade::create($teacher);
+                }
+            });
+
+            return back()->with('success', 'Data siswa berhasil diimport!');
+        } catch (Exception $e) {
+            return back()->withErrors(['error' => 'Terjadi kesalahan saat mengimport data.']);
         }
-
-        DB::transaction(function () use ($data) {
-            foreach ($data as $teacher) {
-                Grade::create($teacher);
-            }
-        });
-
-        return back()->with('success', 'Data siswa berhasil diimport!');
     }
 }

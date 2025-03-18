@@ -125,59 +125,63 @@ class AdminGroupController extends Controller
 
     public function upload(Request $request)
     {
-        $request->validate([
-            'file' => 'required|mimes:csv,txt'
-        ]);
-
-        $file = fopen($request->file('file')->getRealPath(), 'r');
-        $header = fgetcsv($file);
-
-        $data = [];
-        while ($row = fgetcsv($file)) {
-            $data[] = [
-                'name' => $row[0],
-                'grade' => $row[1],
-            ];
-        }
-        fclose($file);
-
-
-        // filter for duplicate nik and gender validation
-
-        $dataGroup = [];
-
-        foreach ($data as $group) {
-            $validator = Validator::make($group, [
-                'name' => 'required',
-                'grade' => 'required',
-
+        try {
+            $request->validate([
+                'file' => 'required|mimes:csv,txt'
             ]);
 
-            if ($validator->fails()) {
-                return back()->withErrors($validator);
+            $file = fopen($request->file('file')->getRealPath(), 'r');
+            $header = fgetcsv($file);
+
+            $data = [];
+            while ($row = fgetcsv($file)) {
+                $data[] = [
+                    'name' => $row[0],
+                    'grade' => $row[1],
+                ];
             }
-            if (Group::where('name', $group['name'])->exists()) {
-                return back()->withErrors(['name' => "Rombel {$group['name']} sudah terdaftar."]);
+            fclose($file);
+
+
+            // filter for duplicate nik and gender validation
+
+            $dataGroup = [];
+
+            foreach ($data as $group) {
+                $validator = Validator::make($group, [
+                    'name' => 'required',
+                    'grade' => 'required',
+
+                ]);
+
+                if ($validator->fails()) {
+                    return back()->withErrors($validator);
+                }
+                if (Group::where('name', $group['name'])->exists()) {
+                    return back()->withErrors(['name' => "Rombel {$group['name']} sudah terdaftar."]);
+                }
+
+                $grade = Grade::where('name', $group['grade'])->first();
+                if (!$grade) {
+                    return back()->withErrors(['grade' => "Kelas {$group['grade']} tidak ditemukan."]);
+                }
+
+                $dataGroup[] = [
+                    'name' => $group['name'],
+                    'grade_id' => $grade->id,
+                ];
             }
 
-            $grade = Grade::where('name', $group['grade'])->first();
-            if (!$grade) {
-                return back()->withErrors(['grade' => "Kelas {$group['grade']} tidak ditemukan."]);
-            }
 
-            $dataGroup[] = [
-                'name' => $group['name'],
-                'grade_id' => $grade->id,
-            ];
+            DB::transaction(function () use ($dataGroup) {
+                foreach ($dataGroup as $group) {
+                    Group::create($group);
+                }
+            });
+
+            return back()->with('success', 'Data siswa berhasil diimport!');
+        } catch (Exception $e) {
+            return back()->withErrors(['error' => 'Terjadi kesalahan saat mengunggah data.']);
         }
-
-
-        DB::transaction(function () use ($dataGroup) {
-            foreach ($dataGroup as $group) {
-                Group::create($group);
-            }
-        });
-
-        return back()->with('success', 'Data siswa berhasil diimport!');
     }
 }
