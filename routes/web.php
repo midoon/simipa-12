@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminGradeController;
 use App\Http\Controllers\AdminGroupController;
 use App\Http\Controllers\AdminStudentController;
+use App\Http\Controllers\AdminSubjectController;
 use App\Http\Controllers\AdminTeacherController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\DB;
@@ -68,4 +69,12 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     Route::put('/admin/student/{studentId}', [AdminStudentController::class, 'update']);
     Route::get('/admin/student/template/donwload', [AdminStudentController::class, 'downloadTemplate']);
     Route::post('/admin/student/upload', [AdminStudentController::class, 'upload']);
+
+    //admin subject
+    Route::get('/admin/subject', [AdminSubjectController::class, 'index']);
+    Route::post('/admin/subject', [AdminSubjectController::class, 'store']);
+    Route::delete('/admin/subject/{subjectId}', [AdminSubjectController::class, 'destroy']);
+    Route::put('/admin/subject/{subjectId}', [AdminSubjectController::class, 'update']);
+    Route::get('/admin/subject/template/donwload', [AdminSubjectController::class, 'downloadTemplate']);
+    Route::post('/admin/subject/upload', [AdminSubjectController::class, 'upload']);
 });
