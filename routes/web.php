@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminGradeController;
+use App\Http\Controllers\AdminGroupController;
 use App\Http\Controllers\AdminTeacherController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\DB;
@@ -42,4 +44,19 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     Route::delete('/admin/teacher/{teacherId}', [AdminTeacherController::class, 'destroy']);
     Route::get('/admin/teacher/template/donwload', [AdminTeacherController::class, 'downloadTemplate']);
     Route::post('/admin/teacher/upload', [AdminTeacherController::class, 'upload']);
+
+    //admin grade
+    Route::get('/admin/grade', [AdminGradeController::class, 'index']);
+    Route::post('/admin/grade', [AdminGradeController::class, 'store']);
+    Route::delete('/admin/grade/{kelasId}', [AdminGradeController::class, 'destroy']);
+    Route::put('/admin/grade/{kelasId}', [AdminGradeController::class, 'update']);
+    Route::get('/admin/grade/template/donwload', [AdminGradeController::class, 'downloadTemplate']);
+    Route::post('/admin/grade/upload', [AdminGradeController::class, 'upload']);
+
+    // admin group
+    Route::post('/admin/group', [AdminGroupController::class, 'store']);
+    Route::put('/admin/group/{groupId}', [AdminGroupController::class, 'update']);
+    Route::delete('/admin/group/{groupId}', [AdminGroupController::class, 'destroy']);
+    Route::get('/admin/group/template/donwload', [AdminGroupController::class, 'downloadTemplate']);
+    Route::post('/admin/group/upload', [AdminGroupController::class, 'upload']);
 });
