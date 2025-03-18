@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminGradeController;
 use App\Http\Controllers\AdminGroupController;
+use App\Http\Controllers\AdminStudentController;
 use App\Http\Controllers\AdminTeacherController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\DB;
@@ -59,4 +60,12 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     Route::delete('/admin/group/{groupId}', [AdminGroupController::class, 'destroy']);
     Route::get('/admin/group/template/donwload', [AdminGroupController::class, 'downloadTemplate']);
     Route::post('/admin/group/upload', [AdminGroupController::class, 'upload']);
+
+    // admin student
+    Route::get('/admin/student', [AdminStudentController::class, 'index']);
+    Route::post('/admin/student', [AdminStudentController::class, 'store']);
+    Route::delete('/admin/student/{studentId}', [AdminStudentController::class, 'destroy']);
+    Route::put('/admin/student/{studentId}', [AdminStudentController::class, 'update']);
+    Route::get('/admin/student/template/donwload', [AdminStudentController::class, 'downloadTemplate']);
+    Route::post('/admin/student/upload', [AdminStudentController::class, 'upload']);
 });
