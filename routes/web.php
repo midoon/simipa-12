@@ -3,8 +3,10 @@
 use App\Http\Controllers\AdminActivityController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AdminFeeController;
 use App\Http\Controllers\AdminGradeController;
 use App\Http\Controllers\AdminGroupController;
+use App\Http\Controllers\AdminPaymentTypeController;
 use App\Http\Controllers\AdminScheduleController;
 use App\Http\Controllers\AdminStudentController;
 use App\Http\Controllers\AdminSubjectController;
@@ -91,4 +93,15 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     Route::post('/admin/activity', [AdminActivityController::class, 'store']);
     Route::put('/admin/activity/{activityId}', [AdminActivityController::class, 'update']);
     Route::delete('/admin/activity/{activityId}', [AdminActivityController::class, 'destroy']);
+
+    // admin payment
+    Route::get('/admin/payment/type', [AdminPaymentTypeController::class, 'index']);
+    Route::post('/admin/payment/type', [AdminPaymentTypeController::class, 'store']);
+    Route::put('/admin/payment/type/{paymentTypeId}', [AdminPaymentTypeController::class, 'update']);
+    Route::delete('/admin/payment/type/{paymentTypeId}', [AdminPaymentTypeController::class, 'destroy']);
+
+    // Fee
+    Route::post('/admin/payment/fee', [AdminFeeController::class, 'store']);
+    Route::delete('/admin/payment/fee/{gradeFeeId}', [AdminFeeController::class, 'destroy']);
+    Route::put('/admin/payment/fee/{gradeFeeId}', [AdminFeeController::class, 'update']);
 });

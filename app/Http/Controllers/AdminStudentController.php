@@ -97,7 +97,7 @@ class AdminStudentController extends Controller
     public function destroy($studentId)
     {
         try {
-            $exisData = [];
+            $existData = [];
             if (DB::table('fees')->where('student_id', $studentId)->exists()) {
                 array_push($existData, 'tagihan');
             }
@@ -110,7 +110,7 @@ class AdminStudentController extends Controller
                 array_push($existData, 'pembayaran');
             }
 
-            if (count($exisData) != 0) {
+            if (count($existData) != 0) {
                 return back()->withErrors(['Siswa' => "siswa yang ingin anda hapus masih digunakan di data " . implode(", ", $existData)]);
             }
 
@@ -222,12 +222,13 @@ class AdminStudentController extends Controller
                 }
 
                 $dataStudent[] = [
-                    'name' => $group['name'],
+                    'name' => $student['name'],
                     'group_id' => $group->id,
                     'nisn' => $student['nisn'],
                     'gender' => $student['gender']
                 ];
             }
+
 
 
             DB::transaction(function () use ($dataStudent) {

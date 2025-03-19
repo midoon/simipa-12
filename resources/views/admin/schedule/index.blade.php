@@ -88,10 +88,10 @@
                     <button type="submit"
                         class="px-4 py-1 bg-simipa-1 text-white rounded hover:bg-simipa-2">Cari</button>
                 </form>
-                <div class="flex justify-end ">
+                <div class="flex justify-end w-1/3">
                     <a href="/admin/schedule">
                         <button type="submit"
-                            class="px-8 py-2 text-sm bg-simipa-1 text-white rounded-lg hover:bg-simipa-2">Hapus
+                            class="px-8 py-2 text-sm bg-simipa-1 text-white rounded-lg hover:bg-simipa-2 ">Hapus
                             Filter</button>
                     </a>
                 </div>
