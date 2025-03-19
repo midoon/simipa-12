@@ -11,7 +11,10 @@ use App\Http\Controllers\AdminScheduleController;
 use App\Http\Controllers\AdminStudentController;
 use App\Http\Controllers\AdminSubjectController;
 use App\Http\Controllers\AdminTeacherController;
+use App\Http\Controllers\TeacherAuthController;
+use App\Http\Controllers\TeacherController;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Middleware\TeacherMiddleware;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -104,4 +107,18 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     Route::post('/admin/payment/fee', [AdminFeeController::class, 'store']);
     Route::delete('/admin/payment/fee/{gradeFeeId}', [AdminFeeController::class, 'destroy']);
     Route::put('/admin/payment/fee/{gradeFeeId}', [AdminFeeController::class, 'update']);
+});
+
+//  teacher auth
+Route::get('/teacher/register', [TeacherAuthController::class, 'showRegister']);
+Route::post('/teacher/register', [TeacherAuthController::class, 'register']);
+Route::get('/teacher/login', [TeacherAuthController::class, 'showLogin']);
+Route::post('/teacher/login', [TeacherAuthController::class, 'login']);
+
+Route::middleware([TeacherMiddleware::class])->group(function () {
+    Route::delete('/teacher/logout', [TeacherAuthController::class, 'logout']);
+
+    // Route
+    Route::get('/teacher/dashboard', [TeacherController::class, 'index']);
+    Route::get('/teacher/schedule', [TeacherController::class, 'showSchedule']);
 });
