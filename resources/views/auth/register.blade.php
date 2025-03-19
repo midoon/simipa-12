@@ -2,7 +2,7 @@
 
     <div class="w-full bg-simipa-5 border">
         <div class="w-full flex justify-center items-center min-h-screen  px-8">
-            <div class="w-full md:max-w-sm rounded-xl bg-white p-10 border">
+            <div class="w-full md:max-w-sm rounded-xl bg-white p-10 ">
                 @if (session('error'))
                     <div class=" text-red-700 p-4 rounded mb-4 text-center">
                         {{ session('error') }}
@@ -22,14 +22,15 @@
                     @csrf
                     <div class="mb-10">
                         <input type="text" name="nik" id="nik" placeholder="nik "
-                            class="border-b-2 w-full focus:outline-none py-1.5">
+                            class="border-b w-full focus:outline-none py-1.5">
                     </div>
                     <div class="mb-10">
                         <input type="password" name="password" id="password" placeholder="password"
-                            class="border-b-2 w-full focus:outline-none py-1.5">
+                            class="border-b w-full focus:outline-none py-1.5">
                     </div>
                     <div class="w-full text-center">
-                        <button type="submit" class="px-20 py-2 bg-simipa-2 text-white rounded-full">Register</button>
+                        <button type="submit"
+                            class="px-16 py-2 bg-simipa-2 text-white rounded-full lg:px-20 hover:cursor-pointer hover:bg-simipa-3">Register</button>
                     </div>
                 </form>
                 <div class="mt-8">

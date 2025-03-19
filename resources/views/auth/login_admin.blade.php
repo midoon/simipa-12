@@ -20,7 +20,8 @@
                             class=" border-0 border-b-1 w-full focus:outline-none py-1.5 round" required>
                     </div>
                     <div class="w-full text-center">
-                        <button type="submit" class="px-20 py-2 bg-simipa-2 text-white rounded-full">Login
+                        <button type="submit"
+                            class="px-16 py-2 bg-simipa-2 text-white rounded-full lg:px-20 hover:cursor-pointer hover:bg-simipa-3">Login
                             Admin</button>
                     </div>
                 </form>
