@@ -2,7 +2,7 @@
     <x-navbar-teacher>
     </x-navbar-teacher>
 
-    <div class=" px-4 sm:mx-[250px] ">
+    <div class=" px-4 py-20 sm:py-0 sm:mx-[250px] ">
         @if ($errors->any())
             <div id="error-any" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
                 <div class="flex justify-between">
