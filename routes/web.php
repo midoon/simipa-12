@@ -14,6 +14,8 @@ use App\Http\Controllers\AdminTeacherController;
 use App\Http\Controllers\TeacherAttendanceController;
 use App\Http\Controllers\TeacherAuthController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\TeacherFeeController;
+use App\Http\Controllers\TeacherPaymentController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\TeacherMiddleware;
 use Illuminate\Support\Facades\DB;
@@ -133,4 +135,21 @@ Route::middleware([TeacherMiddleware::class])->group(function () {
     Route::post('/teacher/attendance/delete', [TeacherAttendanceController::class, 'destroy']);
     Route::get('/teacher/attendance/report/filter', [TeacherAttendanceController::class, 'filterReport']);
     Route::get('/teacher/attendance/report/generate', [TeacherAttendanceController::class, 'report']);
+
+    // Payment
+    Route::get('/teacher/payment/create/filter', [TeacherPaymentController::class, 'filterCreate']);
+    Route::get('/teacher/payment/create', [TeacherPaymentController::class, 'showCreate']);
+    Route::post('/teacher/payment/create', [TeacherPaymentController::class, 'store']);
+
+    Route::get('/teacher/payment/read/filter', [TeacherPaymentController::class, 'filterRead']);
+    Route::get('/teacher/payment/read', [TeacherPaymentController::class, 'showRead']);
+    Route::get('/teacher/payment/read/detail', [TeacherPaymentController::class, 'showDetail']);
+    Route::delete('/teacher/payment/delete', [TeacherPaymentController::class, 'destroy']);
+    Route::put('/teacher/payment/update/{paymentId}', [TeacherPaymentController::class, 'update']);
+
+    Route::get('/teacher/payment/report/filter', [TeacherPaymentController::class, 'filterReport']);
+    Route::get('/teacher/payment/report/generate', [TeacherPaymentController::class, 'report']);
+
+    Route::get('/teacher/payment/fee/filter', [TeacherFeeController::class, 'filterRead']);
+    Route::get('/teacher/payment/fee', [TeacherFeeController::class, 'showRead']);
 });
