@@ -11,6 +11,7 @@ use App\Http\Controllers\AdminScheduleController;
 use App\Http\Controllers\AdminStudentController;
 use App\Http\Controllers\AdminSubjectController;
 use App\Http\Controllers\AdminTeacherController;
+use App\Http\Controllers\TeacherAttendanceController;
 use App\Http\Controllers\TeacherAuthController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Middleware\AdminMiddleware;
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/teacher/login');
 });
 
 Route::get('/helo', function () {
@@ -121,4 +122,15 @@ Route::middleware([TeacherMiddleware::class])->group(function () {
     // Route
     Route::get('/teacher/dashboard', [TeacherController::class, 'index']);
     Route::get('/teacher/schedule', [TeacherController::class, 'showSchedule']);
+
+    //Presensi
+    Route::get('/teacher/attendance/read/filter', [TeacherAttendanceController::class, 'filterRead']);
+    Route::get('/teacher/attendance/read', [TeacherAttendanceController::class, 'showRead']);
+    Route::get('/teacher/attendance/create/filter', [TeacherAttendanceController::class, 'filterCreate']);
+    Route::get('/teacher/attendance/create', [TeacherAttendanceController::class, 'showCreate']);
+    Route::post('/teacher/attendance/store', [TeacherAttendanceController::class, 'store']);
+    Route::put('/teacher/attendance/update', [TeacherAttendanceController::class, 'update']);
+    Route::post('/teacher/attendance/delete', [TeacherAttendanceController::class, 'destroy']);
+    Route::get('/teacher/attendance/report/filter', [TeacherAttendanceController::class, 'filterReport']);
+    Route::get('/teacher/attendance/report/generate', [TeacherAttendanceController::class, 'report']);
 });
