@@ -41,7 +41,7 @@ class AdminStudentController extends Controller
             });
 
             // Eksekusi query
-            $students = $studentsQuery->paginate(40);
+            $students = $studentsQuery->paginate(40)->appends(request()->query());
 
             // Ambil data groups dan grades
             $groups = Group::all();

@@ -4,5 +4,3 @@ UPCOMING FEATURE:
 -
 
 
-BUG:
-- [admin] : student -> ketika melalukan filter dan terdapat paginationa dan dikklik paginationnya, malah kerefresh
