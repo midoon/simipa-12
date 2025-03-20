@@ -14,7 +14,7 @@ class AdminGradeController extends Controller
 {
     public function index()
     {
-        $groups = Group::all();
+        $groups = Group::paginate(6);
         $grades = Grade::all();
         return view('admin.grade.index', [
             'groups' => $groups,

@@ -1,2 +1,8 @@
+UPCOMING FEATURE:
+- [admin] : Grade page -> layouting
+- [admin] : on Delete Cascede with multi confirmation
+-
+
+
 BUG:
-- upload csv ketika salah template
+- [admin] : student -> ketika melalukan filter dan terdapat paginationa dan dikklik paginationnya, malah kerefresh

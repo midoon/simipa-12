@@ -152,6 +152,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="mt-5 ">
+                        {{ $groups->links() }}
+                    </div>
                 </div>
             </div>
         </div>

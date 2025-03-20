@@ -138,11 +138,12 @@ class AdminTeacherController extends Controller
                 $data[] = [
                     'name' => $row[0],
                     'nik' => $row[1],
-                    'gender' => $row[2],
+                    'gender' => strtolower($row[2]),
                     'role' => ['guru'],
                 ];
             }
             fclose($file);
+
 
 
             // filter for duplicate nik and gender validation

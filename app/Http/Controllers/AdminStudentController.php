@@ -189,7 +189,7 @@ class AdminStudentController extends Controller
                 $data[] = [
                     'name' => $row[0],
                     'nisn' => $row[1],
-                    'gender' => $row[2],
+                    'gender' => strtolower($row[2]),
                     'group' => $row[3],
                 ];
             }
