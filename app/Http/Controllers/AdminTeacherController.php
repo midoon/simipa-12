@@ -15,7 +15,6 @@ class AdminTeacherController extends Controller
     {
 
         $teachers = Teacher::paginate(10);
-        dd($teachers);
         return view('admin.teacher.index', ['teachers' => $teachers]);
     }
 
