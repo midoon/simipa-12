@@ -47,6 +47,9 @@
                             <th scope="col" class="px-6 py-3">
                                 Akses
                             </th>
+                            <th>
+                                Akun
+                            </th>
                             <th scope="col" class="px-6 py-3">
                                 Opsi
                             </th>
@@ -66,6 +69,17 @@
                                 </td>
                                 <td class="px-6 py-4">
                                     {{ implode(', ', $teacher->role) }}
+                                </td>
+                                <td>
+                                    @if ($teacher->account == 1)
+                                        <span class="px-2 py-1 text-xs text-white bg-green-500 rounded-full">
+                                            Terdaftar
+                                        </span>
+                                    @else
+                                        <span class="px-2 py-1 text-xs text-white bg-red-500 rounded-full">
+                                            Tidak Terdaftar
+                                        </span>
+                                    @endif
                                 </td>
                                 <td class="px-6 py-4">
                                     <div class="flex gap-3">

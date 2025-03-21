@@ -15,6 +15,7 @@ class AdminTeacherController extends Controller
     {
 
         $teachers = Teacher::paginate(10);
+        dd($teachers);
         return view('admin.teacher.index', ['teachers' => $teachers]);
     }
 
@@ -98,6 +99,21 @@ class AdminTeacherController extends Controller
                 return back()->withErrors(['guru' => "NIK: $request->nik sudah terdaftar."])->withInput();
             }
             return back()->withErrors(['error' => 'Terjadi kesalahan saat mengupdate data.'])->withInput();
+        }
+    }
+
+    public function resetPassword(Request $request)
+    {
+        try {
+            DB::transaction(function () use ($request) {
+                DB::table('teachers')->where('id', $request->teacher_id)->update([
+                    'password' => null,
+                    'account' => 0
+                ]);
+            });
+            return redirect("/admin/teacher");
+        } catch (Exception $e) {
+            return back()->withErrors(['error' => 'Terjadi kesalahan saat mereset password.']);
         }
     }
 
