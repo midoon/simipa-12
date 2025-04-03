@@ -6,7 +6,7 @@ services:
         container_name: simipa_docker
         image: simipa_image
         ports:
-            - 8001:8000
+            - 8001:80
         env_file:
             - .env
         depends_on:
