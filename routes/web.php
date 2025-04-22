@@ -129,7 +129,7 @@ Route::middleware([TeacherMiddleware::class])->group(function () {
 
     //Presensi
     Route::get('/teacher/attendance/read/filter', [TeacherAttendanceController::class, 'filterRead']);
-    Route::get('/teacher/attendance/read', [TeacherAttendanceController::class, 'showRead']);
+    Route::get('/teacher/attendance/read', [TeacherAttendanceController::class, 'read']);
     Route::get('/teacher/attendance/create/filter', [TeacherAttendanceController::class, 'filterCreate']);
     Route::get('/teacher/attendance/create', [TeacherAttendanceController::class, 'showCreate']);
     Route::post('/teacher/attendance/store', [TeacherAttendanceController::class, 'store']);
@@ -144,7 +144,7 @@ Route::middleware([TeacherMiddleware::class])->group(function () {
     Route::post('/teacher/payment/create', [TeacherPaymentController::class, 'store']);
 
     Route::get('/teacher/payment/read/filter', [TeacherPaymentController::class, 'filterRead']);
-    Route::get('/teacher/payment/read', [TeacherPaymentController::class, 'showRead']);
+    Route::get('/teacher/payment/read', [TeacherPaymentController::class, 'read']);
     Route::get('/teacher/payment/read/detail', [TeacherPaymentController::class, 'showDetail']);
     Route::delete('/teacher/payment/delete', [TeacherPaymentController::class, 'destroy']);
     Route::put('/teacher/payment/update/{paymentId}', [TeacherPaymentController::class, 'update']);
@@ -153,5 +153,5 @@ Route::middleware([TeacherMiddleware::class])->group(function () {
     Route::get('/teacher/payment/report/generate', [TeacherPaymentController::class, 'report']);
 
     Route::get('/teacher/payment/fee/filter', [TeacherFeeController::class, 'filterRead']);
-    Route::get('/teacher/payment/fee', [TeacherFeeController::class, 'showRead']);
+    Route::get('/teacher/payment/fee', [TeacherFeeController::class, 'read']);
 });

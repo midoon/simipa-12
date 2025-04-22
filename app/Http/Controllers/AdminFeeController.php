@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Validator;
 
 class AdminFeeController extends Controller
 {
+    // index
     public function store(Request $request)
     {
         try {

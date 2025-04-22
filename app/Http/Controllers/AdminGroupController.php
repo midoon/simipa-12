@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Validator;
 
 class AdminGroupController extends Controller
 {
+    // index
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [

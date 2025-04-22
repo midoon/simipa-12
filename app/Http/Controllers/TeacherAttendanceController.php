@@ -24,7 +24,7 @@ class TeacherAttendanceController extends Controller
         }
     }
 
-    public function showRead(Request $request)
+    public function read(Request $request)
     {
         try {
             $validator = Validator::make($request->all(), [
