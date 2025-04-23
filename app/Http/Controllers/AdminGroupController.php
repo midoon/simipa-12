@@ -13,6 +13,16 @@ use Illuminate\Support\Facades\Validator;
 class AdminGroupController extends Controller
 {
     // index
+    public function index()
+    {
+        $groups = Group::with('grade')->paginate(8);
+        $grades = Grade::all();
+        return view('admin.group.index', [
+            'groups' => $groups,
+            'grades' => $grades
+        ]);
+    }
+
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [

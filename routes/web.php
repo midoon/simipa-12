@@ -68,6 +68,7 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     Route::post('/admin/grade/upload', [AdminGradeController::class, 'upload']);
 
     // admin group
+    Route::get('/admin/group', [AdminGroupController::class, 'index']);
     Route::post('/admin/group', [AdminGroupController::class, 'store']);
     Route::put('/admin/group/{groupId}', [AdminGroupController::class, 'update']);
     Route::delete('/admin/group/{groupId}', [AdminGroupController::class, 'destroy']);

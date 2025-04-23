@@ -21,6 +21,19 @@
             <a href="/admin/grade"
                 class="text-simipa-1 font-semibold transition-colors hover:text-simipa-6 block py-3 px-4 rounded-lg hover:bg-simipa-2 group">
                 <div class="flex ml-5">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                        stroke="currentColor" class="w-6 h-6 text-simipa-1 transition-colors group-hover:text-simipa-6">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M2.25 7.125C2.25 6.504 2.754 6 3.375 6h6c.621 0 1.125.504 1.125 1.125v3.75c0 .621-.504 1.125-1.125 1.125h-6a1.125 1.125 0 0 1-1.125-1.125v-3.75ZM14.25 8.625c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v8.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 0 1-1.125-1.125v-8.25ZM3.75 16.125c0-.621.504-1.125 1.125-1.125h5.25c.621 0 1.125.504 1.125 1.125v2.25c0 .621-.504 1.125-1.125 1.125h-5.25a1.125 1.125 0 0 1-1.125-1.125v-2.25Z" />
+                    </svg>
+
+
+                    <p class="ml-2">Kelas</p>
+                </div>
+            </a>
+            <a href="/admin/group"
+                class="text-simipa-1 font-semibold transition-colors hover:text-simipa-6 block py-3 px-4 rounded-lg hover:bg-simipa-2 group">
+                <div class="flex ml-5">
                     <svg class="w-6 h-6 text-simipa-1 transition-colors group-hover:text-simipa-6" aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                         viewBox="0 0 24 24">
@@ -28,7 +41,7 @@
                             d="M4.5 17H4a1 1 0 0 1-1-1 3 3 0 0 1 3-3h1m0-3.05A2.5 2.5 0 1 1 9 5.5M19.5 17h.5a1 1 0 0 0 1-1 3 3 0 0 0-3-3h-1m0-3.05a2.5 2.5 0 1 0-2-4.45m.5 13.5h-7a1 1 0 0 1-1-1 3 3 0 0 1 3-3h3a3 3 0 0 1 3 3 1 1 0 0 1-1 1Zm-1-9.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z" />
                     </svg>
 
-                    <p class="ml-2">Kelas</p>
+                    <p class="ml-2">Rombongan Belajar</p>
                 </div>
             </a>
             <a href="/admin/student"
