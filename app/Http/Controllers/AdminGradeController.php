@@ -14,12 +14,16 @@ class AdminGradeController extends Controller
 {
     public function index()
     {
-        $groups = Group::paginate(6);
-        $grades = Grade::all();
-        return view('admin.grade.index', [
-            'groups' => $groups,
-            'grades' => $grades
-        ]);
+        try {
+
+            $grades = Grade::all();
+            return view('admin.grade.index', [
+
+                'grades' => $grades
+            ]);
+        } catch (Exception $e) {
+            return back()->withErrors(['error' => "Terjadi kesalahan saat memuat data: {$e->getMessage()}"]);
+        }
     }
 
     public function store(Request $request)

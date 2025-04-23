@@ -15,12 +15,22 @@ class AdminGroupController extends Controller
     // index
     public function index()
     {
-        $groups = Group::with('grade')->paginate(8);
-        $grades = Grade::all();
-        return view('admin.group.index', [
-            'groups' => $groups,
-            'grades' => $grades
-        ]);
+        try {
+            $query = request()->query();
+            $groupsQuery = Group::query()->with('grade');
+            if (isset($query['grade_id'])) {
+                $groupsQuery->where('grade_id', $query['grade_id']);
+            }
+
+            $groups = $groupsQuery->paginate(6)->appends(request()->query());
+            $grades = Grade::all();
+            return view('admin.group.index', [
+                'groups' => $groups,
+                'grades' => $grades
+            ]);
+        } catch (Exception $e) {
+            return back()->withErrors(['error' => "Terjadi kesalahan saat memuat data: {$e->getMessage()}"]);
+        }
     }
 
     public function store(Request $request)
