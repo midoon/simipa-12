@@ -17,9 +17,18 @@ class AdminFeeController extends Controller
     public function index()
     {
         try {
+
+            $query = request()->query();
+            $gradeFeeQuery = GradeFee::query()->with('paymentType');
+            if (isset($query['payment_type_id'])) {
+                $gradeFeeQuery->where('payment_type_id', $query['payment_type_id']);
+            }
+
+            $gradeFees = $gradeFeeQuery->paginate(6)->appends(request()->query());
+
             $paymentTypes = PaymentType::all();
             $grades = Grade::all();
-            $gradeFees = GradeFee::all();
+
             return view('admin.fee.index', ['paymentTypes' => $paymentTypes, 'grades' => $grades, 'gradeFees' => $gradeFees]);
         } catch (Exception $e) {
             return back()->withErrors(['error' => "Terjadi kesalahan saat memuat data: {$e->getMessage()}"]);
