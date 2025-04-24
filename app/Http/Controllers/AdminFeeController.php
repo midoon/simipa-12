@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Fee;
+use App\Models\Grade;
 use App\Models\GradeFee;
+use App\Models\PaymentType;
 use App\Models\Student;
 use Exception;
 use Illuminate\Http\Request;
@@ -12,7 +14,18 @@ use Illuminate\Support\Facades\Validator;
 
 class AdminFeeController extends Controller
 {
-    // index
+    public function index()
+    {
+        try {
+            $paymentTypes = PaymentType::all();
+            $grades = Grade::all();
+            $gradeFees = GradeFee::all();
+            return view('admin.fee.index', ['paymentTypes' => $paymentTypes, 'grades' => $grades, 'gradeFees' => $gradeFees]);
+        } catch (Exception $e) {
+            return back()->withErrors(['error' => "Terjadi kesalahan saat memuat data: {$e->getMessage()}"]);
+        }
+    }
+
     public function store(Request $request)
     {
         try {
@@ -56,7 +69,7 @@ class AdminFeeController extends Controller
                     ]);
                 }
             });
-            return redirect('/admin/payment/type');
+            return redirect('/admin/payment/fee');
         } catch (Exception $e) {
             return back()->withErrors(['error' => "Terjadi kesalahan saat menyimpan data: {$e->getMessage()}"]);
         }
@@ -80,7 +93,7 @@ class AdminFeeController extends Controller
                     $gradeFee->delete();
                 }
             });
-            return redirect('/admin/payment/type');
+            return redirect('/admin/payment/fee');
         } catch (Exception $e) {
             return back()->withErrors(['error' => "Terjadi kesalahan saat menghapus data: {$e->getMessage()}"]);
         }
@@ -136,7 +149,7 @@ class AdminFeeController extends Controller
             });
 
 
-            return redirect('/admin/payment/type');
+            return redirect('/admin/payment/fee');
         } catch (Exception $e) {
             return back()->withErrors(['error' => "Terjadi kesalahan saat mengupdate data: {$e->getMessage()}"]);
         }

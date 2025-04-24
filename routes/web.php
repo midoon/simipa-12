@@ -110,6 +110,7 @@ Route::middleware([AdminMiddleware::class])->group(function () {
     Route::delete('/admin/payment/type/{paymentTypeId}', [AdminPaymentTypeController::class, 'destroy']);
 
     // Fee
+    Route::get('/admin/payment/fee', [AdminFeeController::class, 'index']);
     Route::post('/admin/payment/fee', [AdminFeeController::class, 'store']);
     Route::delete('/admin/payment/fee/{gradeFeeId}', [AdminFeeController::class, 'destroy']);
     Route::put('/admin/payment/fee/{gradeFeeId}', [AdminFeeController::class, 'update']);
