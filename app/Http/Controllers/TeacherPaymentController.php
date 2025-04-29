@@ -62,6 +62,7 @@ class TeacherPaymentController extends Controller
                 $studentData[] = [
                     'id' => $student->id,
                     'name' => $student->name,
+                    'nisn' => $student->nisn,
                     'remaining_balance' => $remainingBalance,
                 ];
             }

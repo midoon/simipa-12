@@ -30,7 +30,10 @@
                     class="block px-4 py-4 text-simipa-1 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 w-full mb-3 sm:py-2 sm:h-[70px] ">
                     <div class="data-fee hidden">{{ $student->id }}</div>
                     <div class="flex justify-between sm:h-full">
-                        <p class="font-semibold text-simipa-1 sm:self-start">{{ $student->name }} </p>
+                        <div>
+                            <p class="font-semibold text-simipa-1 sm:self-start">{{ $student->name }} </p>
+                            <p class="font-light">NISN: {{ $student->nisn }}</p>
+                        </div>
                         <div class="flex items-center">
                             <a href="/teacher/payment/read/detail?student_id={{ $student->id }}&payment_type_id={{ $paymentType->id }}"
                                 class="bg-simipa-2 text-white py-2 px-4 rounded-lg sm:px-8 sm:py-2">Detail</a>
