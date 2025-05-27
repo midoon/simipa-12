@@ -108,9 +108,10 @@
                 })
                 .then(response => response.json())
                 .then(data => {
+                    console.log(data);
                     alert(data.message); // Tampilkan pesan sukses
                     // redirect ke halaman lihat presensi dengan filter tertentu
-                    window.location.href = '/';
+                    // window.location.href = '/';
                 })
                 .catch(error => {
                     console.error('Error:', error);
