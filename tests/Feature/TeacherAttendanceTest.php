@@ -125,14 +125,14 @@ class TeacherAttendanceTest extends TestCase
             'presensi' => $presensi
         ]);
 
-        echo $req1->getContent(); // Untuk debug
+
 
         // Simulasi request kedua, seharusnya gagal karena data sudah ada
         $response = $this->post('/teacher/attendance/store', [
             'presensi' => $presensi
         ]);
 
-        echo $response->getContent(); // Untuk debug
+
 
         $response->assertJson([
             'message' => 'Presensi untuk kegiatan dan hari tersebut sudah dibuat!'
